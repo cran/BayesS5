@@ -199,7 +199,7 @@ S5 <- function(X,y,ind_fun,model,tuning,tem,ITER=20,S=20,C0=2,verbose=TRUE){
         IND = s[1:(size+p.g)]
         p.ind = length(IND)
         
-        id = sum(2^(2*log(ind2)))
+        id = sum(2^(3*log(ind2)))
         id.ind = which(id==ID.obj)
         
         leng = length(id.ind)
@@ -270,5 +270,5 @@ S5 <- function(X,y,ind_fun,model,tuning,tem,ITER=20,S=20,C0=2,verbose=TRUE){
   GAM = GAM.fin1
   OBJ = OBJ.fin1
   print("Done!")
-  return(list(GAM = GAM,OBJ = OBJ) )
+  return(list(GAM = GAM,OBJ = OBJ, tuning=tuning))
 }

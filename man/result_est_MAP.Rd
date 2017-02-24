@@ -1,32 +1,35 @@
-\name{result}
-\alias{result}
+\name{result_est_MAP}
+\alias{result_est_MAP}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Posterior inference results from the object of S5
 }
 \description{
-Using the object of S5, the  maximum a posteriori (MAP) model, its posterior probability, and the marginal inclusion probabilities are provided.
+Using the object of S5, the maximum a posteriori (MAP) estimator  and Bayesian Model Averaged (BMA) estimators of the regression coefficients are provided.
 }
 \usage{
-result(fit)
+result_est_MAP(res,X,y,obj_fun,verbose = TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{fit}{
+  \item{res}{
    an object of the 'S5' function.
 }
+\item{X}{the covariates.}
+\item{y}{the response varaible.}
+\item{obj_fun}{the negative log (unnormalized) posterior density when a model is given.}
+\item{verbose}{logical; default is TRUE.}
 }
 \value{
 %%  ~Describe the value returned
 %%  If it is a LIST, use
-  \item{hppm}{the MAP model }
-   \item{hppm.prob}{the posterior probability of the MAP model}
-    \item{marg.prob}{the marginal inclusion probabilities }
-     \item{gam}{the binary vaiables of searched models by S5}
-      \item{obj}{the corresponding log (unnormalized) posterior model probabilities}
-      \item{post}{the corresponding (normalized) posterior model probabilities}
-      \item{tuning}{the tuning parameter used in the model selection}
-}
+  \item{intercept.MAP}{the MAP estimator of the intercept. }
+   \item{beta.MAP}{the MAP estimator of the regression coefficients.}
+  \item{sig.MAP}{the MAP estimator of the regression variance.}
+  \item{intercept.BMA}{the Baeysian model averaged estimator of the intercept. }
+   \item{beta.BMA}{the Bayesian model averaged estimator of the regression coefficients.}
+  
+  }
 \references{
 Shin, M., Bhattacharya, A., Johnson V. E. (2016+) A Scalable Bayesian Variable Selection Using Nonlocal Prior Densities in Ultrahigh-dimensional Settings, under revision in Statistica Sinica. 
 
@@ -44,7 +47,7 @@ Shin Minsuk and Ruoxuan Tian
 
 \examples{
 p=5000
-n = 200
+n = 100
 
 indx.beta = 1:5
 xd0 = rep(0,p);xd0[indx.beta]=1
@@ -72,10 +75,9 @@ y = as.vector(y)
 #fit_pimom$OBJ # the corresponding log (unnormalized) posterior probability
 
 #res_pimom = result(fit_pimom)
-#str(res_pimom)
-#print(res_pimom$hppm) 
-#print(res_pimom$hppm.prob)  
-#plot(res_pimom$marg.prob,ylim=c(0,1)) 
+#est.MAP = result_est_MAP(res_pimom,X,y,obj_fun_pimom,verbose=TRUE)
+#plot(est.MAP$beta.MAP,est.MAP$beta.BMA)
+#abline(0,1,col="red")
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

@@ -51,6 +51,7 @@ By using the procedure of Nikooienejad et al. (2016), the 'hyper_par' function c
 %%  If it is a LIST, use
 \item{GAM}{ the binary vaiables of searched models by S5}
 \item{OBJ}{ the corresponding log (unnormalized) posterior probability}
+\item{tuning}{the tuning parameter used in the model selection}
 %% ...
 }
 

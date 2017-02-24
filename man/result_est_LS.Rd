@@ -1,32 +1,33 @@
-\name{result}
-\alias{result}
+\name{result_est_LS}
+\alias{result_est_LS}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Posterior inference results from the object of S5
 }
 \description{
-Using the object of S5, the  maximum a posteriori (MAP) model, its posterior probability, and the marginal inclusion probabilities are provided.
+Using the object of S5, the Least Square (LS) estimator of the MAP model and Bayesian Model Averaged (BMA) LS estimators of the regression coefficients are provided.
 }
 \usage{
-result(fit)
+result_est_LS(res,X,y,verbose = TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{fit}{
+  \item{res}{
    an object of the 'S5' function.
 }
+\item{X}{the covariates.}
+\item{y}{the response varaible.}
+\item{verbose}{logical; default is TRUE.}
 }
 \value{
 %%  ~Describe the value returned
 %%  If it is a LIST, use
-  \item{hppm}{the MAP model }
-   \item{hppm.prob}{the posterior probability of the MAP model}
-    \item{marg.prob}{the marginal inclusion probabilities }
-     \item{gam}{the binary vaiables of searched models by S5}
-      \item{obj}{the corresponding log (unnormalized) posterior model probabilities}
-      \item{post}{the corresponding (normalized) posterior model probabilities}
-      \item{tuning}{the tuning parameter used in the model selection}
-}
+  \item{intercept.MAP}{the least square estimator of the intercept in the MAP model. }
+   \item{beta.MAP}{the least square estimator of the regression coefficients in the MAP model.}
+  \item{intercept.BMA}{the Baeysian model averaged over the least square estimator of the intercept. }
+   \item{beta.BMA}{the Bayesian model averaged over the least square estimator of the regression coefficients.}
+  
+  }
 \references{
 Shin, M., Bhattacharya, A., Johnson V. E. (2016+) A Scalable Bayesian Variable Selection Using Nonlocal Prior Densities in Ultrahigh-dimensional Settings, under revision in Statistica Sinica. 
 
@@ -44,7 +45,7 @@ Shin Minsuk and Ruoxuan Tian
 
 \examples{
 p=5000
-n = 200
+n = 100
 
 indx.beta = 1:5
 xd0 = rep(0,p);xd0[indx.beta]=1
@@ -72,10 +73,9 @@ y = as.vector(y)
 #fit_pimom$OBJ # the corresponding log (unnormalized) posterior probability
 
 #res_pimom = result(fit_pimom)
-#str(res_pimom)
-#print(res_pimom$hppm) 
-#print(res_pimom$hppm.prob)  
-#plot(res_pimom$marg.prob,ylim=c(0,1)) 
+#est.LS = result_est_LS(res_pimom,X,y,obj_fun_pimom,verbose=TRUE)
+#plot(est.LS$beta.MAP,est.LS$beta.BMA)
+#abline(0,1,col="red")
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

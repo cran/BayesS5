@@ -62,5 +62,5 @@ for(i in 2:w){
   GAM.fin1[,i] = GAM.fin0[,which(OBJ.fin0==OBJ.fin1[i])[1]]
   #  time.fin[i] = time.total[which(OBJ.total==OBJ.fin[i])[1]]
 }
-return(list(GAM=GAM.fin1,OBJ = OBJ.fin1))
+return(list(GAM=GAM.fin1,OBJ = OBJ.fin1, tuning = tuning))
 }

@@ -271,5 +271,5 @@ SSS = function(X,y,ind_fun,model,tuning,N=1000,C0=1,verbose=TRUE){
   GAM = GAM.fin1 # the binary vaiables of searched models
   OBJ = OBJ.fin1 # the the objective values corresponding to the binary variables
   print("Done!")
-  return(list(GAM = GAM,OBJ = OBJ) )
+  return(list(GAM = GAM,OBJ = OBJ, tuning = tuning) )
   }

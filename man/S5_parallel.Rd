@@ -51,12 +51,12 @@ After obtaining the object of the S5 function, by using the 'result' function, y
 
 By using the procedure of Nikooienejad et al. (2016), the 'hyper_par' function chooses the tuning parameter for nonlocal priors (piMoM or peMoM priors).
 }
-
 \value{
 %%  ~Describe the value returned
 %%  If it is a LIST, use
 \item{GAM}{ the binary vaiables of searched models by S5}
 \item{OBJ}{ the corresponding log (unnormalized) posterior probability}
+\item{tuning}{the tuning parameter used in the model selection}
 %% ...
 }
 
@@ -82,8 +82,8 @@ Shin Minsuk and Ruoxuan Tian
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-p=100
-n = 200
+p=5000
+n = 100
 
 indx.beta = 1:5
 xd0 = rep(0,p);xd0[indx.beta]=1

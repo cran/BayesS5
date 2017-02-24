@@ -2,18 +2,18 @@ Package: BayesS5
 Type: Package
 Title: Bayesian Variable Selection Using Simplified Shotgun Stochastic
         Search with Screening (S5)
-Version: 1.22
-Date: 2017-01-10
+Version: 1.30
+Date: 2017-02-24
 Author: Minsuk Shin and Ruoxuan Tian
 Maintainer: Minsuk Shin <minsuk000@gmail.com>
 Depends: R (>= 3.2.4)
 Imports: Matrix, stats, snowfall, abind
 Description: In p >> n settings, full posterior sampling using existing Markov chain Monte
     Carlo (MCMC) algorithms is highly inefficient and often not feasible from a practical
-    perspective. To overcome this problem, we propose a scalable stochastic search algorithm that is called the Simplified Shotgun Stochastic Search (S5) and aimed at rapidly explore interesting regions of model space and finding the maximum a posteriori(MAP) model. Also, the S5 provides an approximation of posterior probability of each model (including the marginal inclusion probabilities).
+    perspective. To overcome this problem, we propose a scalable stochastic search algorithm that is called the Simplified Shotgun Stochastic Search (S5) and aimed at rapidly explore interesting regions of model space and finding the maximum a posteriori(MAP) model. Also, the S5 provides an approximation of posterior probability of each model (including the marginal inclusion probabilities). This algorithm is a part of an article titled Scalable Bayesian Variable Selection Using Nonlocal Prior Densities in Ultrahigh-dimensional Settings (2017+), by Minsuk Shin, Anirban Bhattachary, and Valen E. Johnson, accepted in Statistica Sinica. 
 URL: http://www.stat.tamu.edu/~minsuk/publications/nonlocal_sinica7.pdf
 License: GPL (>= 2)
 Repository: CRAN
 NeedsCompilation: no
-Packaged: 2017-01-17 16:04:55 UTC; minsuk
-Date/Publication: 2017-01-17 19:07:36
+Packaged: 2017-02-24 22:22:19 UTC; minsuk
+Date/Publication: 2017-02-24 23:33:26

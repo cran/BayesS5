@@ -57,6 +57,7 @@ By using the procedure of Nikooienejad et al. (2016), the 'hyper_par' function c
 %%  If it is a LIST, use
 \item{GAM}{ the binary vaiables of searched models by S5}
 \item{OBJ}{ the corresponding log (unnormalized) posterior probability}
+\item{tuning}{the tuning parameter used in the model selection}
 %% ...
 }
 
@@ -83,7 +84,7 @@ Shin Minsuk and Ruoxuan Tian
 }
 \examples{
 p0 = 5000
-n0= 200
+n0= 100
 
 indx.beta = 1:5
 xd0 = rep(0,p0);xd0[indx.beta]=1
@@ -129,6 +130,12 @@ y = as.vector(y)
 # the posterior probability of the hppm 
 #plot(res_pimom$marg.prob,ylim=c(0,1),ylab="marginal inclusion probability") 
 # the marginal inclusion probability 
+
+
+### Get the estimated regression coefficients from Bayesian Model Avaeraging (BMA)
+#est.LS = result_est_LS(res_pimom,X,y) # Averged over the Least Square estimators of the models.
+#est.MAP = result_est_MAP(res_pimom,X,y,obj_fun_pimom,verbose=TRUE) 
+# Averged over the maximum posteriori (MAP) estimators of the models.
 }
 
 % Add one or more standard keywords, see file 'KEYWORDS' in the
