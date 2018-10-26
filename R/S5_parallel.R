@@ -1,4 +1,4 @@
-S5_parallel = function(NC,X,y,ind_fun,model,tuning,tem,ITER=20,S=20,C0=2){
+S5_parallel = function(NC,X,y,ind_fun,model,tuning,tem,ITER=30,S=30,C0=3){
   requireNamespace("snowfall")
   requireNamespace("Matrix")
   #require(snowfall)
@@ -11,7 +11,7 @@ S5_parallel = function(NC,X,y,ind_fun,model,tuning,tem,ITER=20,S=20,C0=2){
   sfExportAll = snowfall::sfExportAll
   sfStop = snowfall::sfStop
   
-  if(missing(tem)){tem = seq(0.4,1,length.out=20)^2}
+  if(missing(tem)){tem = seq(0.4,1,length.out=30)^2}
   
   if(missing(ind_fun)){
     print("The prior on regression coefficietns is unspecified. The default is piMoM")
@@ -39,6 +39,10 @@ S5_parallel = function(NC,X,y,ind_fun,model,tuning,tem,ITER=20,S=20,C0=2){
   print(proc.time()-pmt)
   sfStop()
   
+  print("#################################")
+  print("Post-process starts")
+  print("#################################")
+  
   OBJ = NULL
   IND = NULL
   for(i in 1:NC){
@@ -62,5 +66,8 @@ for(i in 2:w){
   GAM.fin1[,i] = GAM.fin0[,which(OBJ.fin0==OBJ.fin1[i])[1]]
   #  time.fin[i] = time.total[which(OBJ.total==OBJ.fin[i])[1]]
 }
+
+print("Done!")
+
 return(list(GAM=GAM.fin1,OBJ = OBJ.fin1, tuning = tuning))
 }

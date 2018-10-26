@@ -5,14 +5,15 @@ function(fit){
   GAM = fit$GAM; OBJ = fit$OBJ; tuning= fit$tuning
 p = nrow(GAM)
   marg.gam = rep(0,p)
+  m = max(OBJ)
 for(u in 1:ncol(GAM)){
-  marg.gam = marg.gam + GAM[,u]*exp(OBJ[u]-max(OBJ))
+  marg.gam = marg.gam + GAM[,u]*exp(OBJ[u]-m)
 }
-marg.gam = marg.gam / sum(exp(OBJ-max(OBJ)))
+marg.gam = marg.gam / sum(exp(OBJ-m))
 gam0 = GAM[,which.max(OBJ)]
 ind2 = which(gam0==1)
-post = exp(OBJ-max(OBJ))/sum(exp(OBJ-max(OBJ)))
-hppm = 1/sum(exp(OBJ-max(OBJ)))
+post = exp(OBJ-m)/sum(exp(OBJ-m))
+hppm = 1/sum(exp(OBJ-m))
 print("# of Searched Models by S5");print(length(OBJ))
 print("The MAP model is ")
 print(which(gam0==1))

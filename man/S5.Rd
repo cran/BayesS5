@@ -5,10 +5,10 @@
 Simplified shotgun stochastic search algorithm with screening (S5)
 }
 \description{
-The Simplified Shotgun Stochastic Search with Screening (S5) is proposed by Shin et al (2016+), which is a scalable stochastic search algorithm for high-dimensonal Bayesian variable selection.  It is a modified version of the Shotgun Stochasitic Search (SSS, Hans et al., 2007), aimed at rapidly identifying regions of high posterior probability and finding the maximum a posteriori (MAP) model. Also, the S5 provides an approximation of posterior probability of each model (including the marginal inculsion probabilities). For details, see Shin et al. (2016+)
+The Simplified Shotgun Stochastic Search with Screening (S5) is proposed by Shin et al (2018), which is a scalable stochastic search algorithm for high-dimensonal Bayesian variable selection.  It is a modified version of the Shotgun Stochasitic Search (SSS, Hans et al., 2007), aimed at rapidly identifying regions of high posterior probability and finding the maximum a posteriori (MAP) model. Also, the S5 provides an approximation of posterior probability of each model (including the marginal inculsion probabilities). For details, see Shin et al. (2018)
 }
 \usage{
-S5(X, y, ind_fun, model, tuning, tem, ITER = 20, S = 20, C0 = 2, verbose = TRUE)
+S5(X, y, ind_fun, model, tuning, tem, ITER = 30, S = 30, C0 = 3, verbose = TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -28,16 +28,16 @@ a model prior; Uniform or Bernoulli_Uniform. The default is Bernoulli_Uniform
 a tuning parameter for the objective function (tau for piMoM and peMoM priors; g for the g-prior).
 }
   \item{tem}{
-a temperature schedule. The default is seq(0.4,1,length.out=20)^-2.
+a temperature schedule. The default is seq(0.4,1,length.out=30)^-2.
 }
   \item{ITER}{
- the number of iterations in each temperature; default is 20.
+ the number of iterations in each temperature; default is 30.
 }
   \item{S}{
-a screening size of variables; default is 20.
+a screening size of variables; default is 30.
 }
   \item{C0}{
-a number of repetition of  the S5 algorithm C0 times,default is 2. When the total number of variables is huge and real data sets are considered, using a large number of C0 is recommended, e.g., C0=10.  
+a number of repetition of  the S5 algorithm C0 times,default is 3. When the total number of variables is huge and real data sets are considered, using a large number of C0 is recommended, e.g., C0=10.  
 }
  \item{verbose}{
  	if TRUE, the function prints the currnet status of the S5 in each temperature; the default is TRUE.
@@ -45,7 +45,7 @@ a number of repetition of  the S5 algorithm C0 times,default is 2. When the tota
  }
  
 \details{
-Using the S5 (Shin et al., 2016+), you will get all the models searched by S5 algorithm, and their corresponding log (unnormalized) posterior probabilities, and also this function can receive searched model for g-prior,piMoM,and peMoM. 
+Using the S5 (Shin et al., 2018), you will get all the models searched by S5 algorithm, and their corresponding log (unnormalized) posterior probabilities, and also this function can receive searched model for g-prior,piMoM,and peMoM. 
 
 After obtaining the object of the S5 function, by using the 'result' function, you can obtain the posterior probabilities of the searched models including the MAP model and  the marginal inclusion probabilities of each variable.
 
@@ -62,7 +62,7 @@ By using the procedure of Nikooienejad et al. (2016), the 'hyper_par' function c
 }
 
 \references{
-Shin, M., Bhattacharya, A., Johnson V. E. (2017+) A Scalable Bayesian Variable Selection Using Nonlocal Prior Densities in Ultrahigh-dimensional Settings, accepted in Statistica Sinica. 
+Shin, M., Bhattacharya, A., Johnson V. E. (2018) A Scalable Bayesian Variable Selection Using Nonlocal Prior Densities in Ultrahigh-dimensional Settings, Statistica Sinica, 28(2), 1053-1078. 
 
 Hans, C., Dobra, A., and West, M. (2007). Shotgun stochastic search for large p regression. Journal of the American Statistical Association, 102, 507-516.
 
@@ -132,10 +132,10 @@ y = as.vector(y)
 # the marginal inclusion probability 
 
 
-### Get the estimated regression coefficients from Bayesian Model Avaeraging (BMA)
-#est.LS = result_est_LS(res_pimom,X,y) # Averged over the Least Square estimators of the models.
+### Get the estimated regression coefficients from Bayesian Model Avaeraging
+#est.LS = result_est_LS(res_pimom,X,y) # Averged over the Least Square estimators.
 #est.MAP = result_est_MAP(res_pimom,X,y,obj_fun_pimom,verbose=TRUE) 
-# Averged over the maximum posteriori (MAP) estimators of the models.
+# Averged over the MAP estimators.
 }
 
 % Add one or more standard keywords, see file 'KEYWORDS' in the

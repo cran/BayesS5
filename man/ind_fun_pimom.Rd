@@ -31,7 +31,7 @@ ind_fun_pimom(X.ind,y,n,p,tuning)
 
 
 \references{
-Shin, M., Bhattacharya, A., Johnson V. E. (2017+) A Scalable Bayesian Variable Selection Using Nonlocal Prior Densities in Ultrahigh-dimensional Settings, accepted in Statistica Sinica. 
+Shin, M., Bhattacharya, A., Johnson V. E. (2018) A Scalable Bayesian Variable Selection Using Nonlocal Prior Densities in Ultrahigh-dimensional Settings, Statistica Sinica, 28(2), 1053-1078. 
 
   Johnson, V. E. and Rossell, D. (2012) Bayesian model selection in high-dimensional settings  , David, Journal of the American Statistical Association,  107 (498), 649-660.
 

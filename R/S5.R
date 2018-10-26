@@ -1,11 +1,11 @@
-S5 <- function(X,y,ind_fun,model,tuning,tem,ITER=20,S=20,C0=2,verbose=TRUE){
+S5 <- function(X,y,ind_fun,model,tuning,tem,ITER=30,S=30,C0=3,verbose=TRUE){
   n = nrow(X)
   p = ncol(X)
    y = y -mean(y)
   #requireNamespace()
   requireNamespace("Matrix")
   Matrix = Matrix::Matrix
-  if(missing(tem)){tem = seq(0.4,1,length.out=20)^2}
+  if(missing(tem)){tem = seq(0.4,1,length.out=30)^2}
   
   if(missing(ind_fun)){
     print("The prior on regression coefficients is unspecified. The default is piMoM")
@@ -25,6 +25,9 @@ S5 <- function(X,y,ind_fun,model,tuning,tem,ITER=20,S=20,C0=2,verbose=TRUE){
   
   A3 = S;r0=1
   verb = verbose
+  
+  
+  set.seed((as.integer(Sys.time())%%1000)*1787 + 100000)
   
   a0=0.01;b0=0.01
   tau = 1
