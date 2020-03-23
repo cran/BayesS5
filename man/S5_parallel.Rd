@@ -8,7 +8,7 @@ Parallel version of S5
 The parallel version of the S5. Multiple S5 chains independently explore the model space to enhance the capacity of searching interesting region of the model space.
 }
 \usage{
-S5_parallel(NC,X,y,ind_fun,model,tuning,tem,ITER=30,S=30,C0=3)
+S5_parallel(NC,X,y,ind_fun,model,tuning,tem,ITER=20,S=20,C0=2)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -31,21 +31,21 @@ a model prior; Uniform or Bernoulli_Uniform. The default is Bernoulli_Uniform
 a tuning parameter for the objective function (tau for piMoM and peMoM priors; g for the g-prior).
 }
   \item{tem}{
-a temperature schedule. The default is seq(0.4,1,length.out=30)^-2.
+a temperature schedule. The default is seq(0.4,1,length.out=20)^-2.
 }
   \item{ITER}{
- a number of iterations in each temperature; default is 30.
+ a number of iterations in each temperature; default is 20.
 }
   \item{S}{
-a screening size of variables; default is 30.
+a screening size of variables; default is 20.
 }
   \item{C0}{
-a number of repetition of  the S5 algorithm C0 times,default is 3. When the total number of variables is huge and real data sets are considered, using a large number of C0 is recommended, e.g., C0=10.  
+a number of repetition of  the S5 algorithm C0 times,default is 2. When the total number of variables is huge and real data sets are considered, using a large number of C0 is recommended, e.g., C0=10.  
 }
 }
  
 \details{
-Using the S5 (Shin et al., 2018), you will get all the models searched by S5 algorithm, and their corresponding log (unnormalized) posterior probabilities, and also this function can receive searched model for g-prior,piMoM,and peMoM. 
+Using the S5 (Shin et al., 2016+), you will get all the models searched by S5 algorithm, and their corresponding log (unnormalized) posterior probabilities, and also this function can receive searched model for g-prior,piMoM,and peMoM. 
 
 After obtaining the object of the S5 function, by using the 'result' function, you can obtain the posterior probabilities of the searched models including the MAP model and  the marginal inclusion probabilities of each variable. 
 
@@ -61,7 +61,7 @@ By using the procedure of Nikooienejad et al. (2016), the 'hyper_par' function c
 }
 
 \references{
-Shin, M., Bhattacharya, A., Johnson V. E. (2018) A Scalable Bayesian Variable Selection Using Nonlocal Prior Densities in Ultrahigh-dimensional Settings, Statistica Sinica, 28(2), 1053-1078. 
+Shin, M., Bhattacharya, A., Johnson V. E. (2016+) A Scalable Bayesian Variable Selection Using Nonlocal Prior Densities in Ultrahigh-dimensional Settings, under revision in Statistica Sinica. 
 
 Hans, C., Dobra, A., and West, M. (2007). Shotgun stochastic search for large p regression. Journal of the American Statistical Association, 102, 507-516.
 
@@ -112,7 +112,6 @@ y = as.vector(y)
 # the marginal inclusion probability 
 
 ### parallel version of S5 (temperature rescheduling)
-#library(snowfall)
 #NC = 2 # the number of cores for the prallel computing
 #C0 = 5 # the number of repetitions of S5 algorithms to explore the model space
 #tuning = hyper_par(type="pimom",X,y,thre = p^-0.5)  
