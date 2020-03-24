@@ -1,8 +1,8 @@
-795bbfc1d364982e341b2b48db559a6a *DESCRIPTION
+138b2cdd6c884b9f9c6301d737bc30df *DESCRIPTION
 88fbbc2c412e5ae37b041632f5137425 *NAMESPACE
 2ffce93144ed32a86156a55f2dcf03f3 *R/Bernoulli_Uniform.R
 2fa4c5369f0d05704d94a9e35557e281 *R/S5.R
-9b52131d1a32bd69f8758f18fcaa348c *R/S5_additive.R
+8794b1e1bd5e38ff44f34623b20eb1da *R/S5_additive.R
 50a0528fb9163ef3b2ace32637590a39 *R/S5_parallel.R
 e90718a7c943671136ad0ce74932b603 *R/SSS.R
 c6a9636104125d48f4cd5fc168f1cc11 *R/Uniform.R
@@ -19,7 +19,7 @@ f7aa1e4061683ac43340b420b2da5ae2 *R/result_est_LS.R
 1e279ee5131aca2c7bc590b91ec450a4 *R/result_est_MAP.R
 2cc0e9c8d4f5623c5f5708184f1e4f4d *man/Bernoulli_Uniform.Rd
 2a4e4dcb054f3ec5d74f455091535214 *man/S5.Rd
-a9903a1cf8d1cf4ecc17beab8cac502e *man/S5_additive.Rd
+970bb86050d338d92db7a4fff6141e3c *man/S5_additive.Rd
 ae327092472c03940c942bae5a189299 *man/S5_parallel.Rd
 e681694fa4c32d97cfde9c4c3c7df34d *man/SSS.Rd
 80a7632958c4cd5356a6c87f17d93b25 *man/Uniform.Rd

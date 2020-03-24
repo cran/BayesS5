@@ -1,19 +1,14 @@
-S5_additive <- function(X,y, K = 5, model, tuning = 10,  tem, ITER=20,S=20,C0=5, verbose=TRUE){
+S5_additive <- function(X, y, K = 5, model, tuning = 0.5*nrow(X),  tem, ITER=20,S=30, C0=5, verbose=TRUE){
   requireNamespace("splines2")
   requireNamespace("Matrix")
   n = nrow(X)
   p = ncol(X)
-  y = y -mean(y)
+  #y = y -mean(y)
 
-  tau = g = tuning
+  tau =  tuning
+  g = 1
   Matrix = Matrix::Matrix
-  if(missing(tem)){tem = seq(0.4,1,length.out=20)^2}
-  #assign("K", K, .GlobalEnv)
-  #assign("n", n, .GlobalEnv)
-  #assign("p", p, .GlobalEnv)
-  #assign("tau", tau, .GlobalEnv)
-  #assign("g", g, .GlobalEnv)
-  
+  if(missing(tem)){tem = seq(0.4,1,length.out=30)^2}
   ##################################################
   ind_fun = BayesS5::ind_fun_NLfP
   #ind_fun = ind_fun_NLfP
@@ -41,7 +36,7 @@ S5_additive <- function(X,y, K = 5, model, tuning = 10,  tem, ITER=20,S=20,C0=5,
     print("The model prior is unspecified. The default is Bernoulli_Uniform")
     model = BayesS5::Bernoulli_Uniform
   }
-  A3 = S;r0=1
+  A3 = S; r0=1
   verb = verbose
   P0 = tcrossprod(rep(1,n))/n
   phi0 = matrix(0,n,K*p)
@@ -388,7 +383,7 @@ S5_additive <- function(X,y, K = 5, model, tuning = 10,  tem, ITER=20,S=20,C0=5,
     print(ind.MAP)
     print("# of Searched Models by S5")
     print(length(OBJ))
-    ind.marg=which(POST_incl_prob>0.5)
-  return(list(GAM = GAM, OBJ = OBJ, phi = phi, Knots= Knots, K = K, post = POST_model, marg.inc = POST_incl_prob, 
-              ind.MAP = ind.MAP, ind.marg = ind.marg, hppm.prob = hppm, tuning=tau ))
+    ind.marg = which(as.vector(POST_incl_prob) > 0.5)
+  return(list(GAM = GAM, OBJ = OBJ, phi = phi, Knots= Knots, K = K, post = POST_model, marg.prob = as.vector(POST_incl_prob), 
+              ind.hppm = ind.MAP, ind.marg = ind.marg, hppm.prob = hppm, tuning=tau ))
 }

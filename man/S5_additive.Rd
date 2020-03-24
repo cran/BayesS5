@@ -8,7 +8,8 @@ Simplified shotgun stochastic search algorithm with screening (S5) for additive 
 This is the Simplified Shotgun Stochastic Search with Screening (S5) for high-dimensonal Bayesian variable selection under nonparameteric additive models, which is considered in "Nonlocal Functional Priors for Nonparametric Hypothesis Testing and High-dimensional Model Selection" by Shin and Bhattacharya (2020+). This function utilizes the inverse moment nonlocal functional prior, and see Shin and Bhattacharya (2020+) for details.
 }
 \usage{
-S5_additive(X, y, K=5, model, tuning, tem, ITER = 20, S = 20, C0 = 5, verbose = TRUE)
+S5_additive(X, y, K=5, model, tuning = 0.5*nrow(X), tem, ITER = 20, S = 30, C0 = 5, 
+verbose = TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -26,7 +27,7 @@ the degree of freedom for the B-spline basis
 a model prior; Uniform or Bernoulli_Uniform. The default is Bernoulli_Uniform
 }
   \item{tuning}{
-a tuning parameter for the objective function (tau = g for the inverse moment prior).
+a tuning parameter for the objective function (tau for the inverse moment prior). The default is 0.5*n.
 }
   \item{tem}{
 a temperature schedule. The default is seq(0.4,1,length.out=20)^-2.
@@ -35,7 +36,7 @@ a temperature schedule. The default is seq(0.4,1,length.out=20)^-2.
  the number of iterations in each temperature; default is 20.
 }
   \item{S}{
-a screening size of variables; default is 20.
+a screening size of variables; default is 30.
 }
   \item{C0}{
 a number of repetition of  the S5 algorithm C0 times,default is 2. When the total number of variables is huge and real data sets are considered, using a large number of C0 is recommended, e.g., C0=5.  
@@ -43,7 +44,7 @@ a number of repetition of  the S5 algorithm C0 times,default is 2. When the tota
  \item{verbose}{
  	if TRUE, the function prints the currnet status of the S5 in each temperature; the default is TRUE.
 }
- }
+}
  
 \details{
 Using the S5 (Shin et al., 2018), you will get all the models searched by S5 algorithm, and their corresponding log (unnormalized) posterior probabilities, and also this function can receive searched model for g-prior,piMoM,and peMoM. 
@@ -62,7 +63,7 @@ Unlike "S5" function that requires an extra step to get more information of the 
 \item{post}{the corresponding (normalized) posterior model probabilities}
 \item{marg.prob}{the marginal inclusion probabilities }
 \item{ind.MAP}{the selected variables from the MAP model}
-\item{ind.MAP}{the selected variables whose marginal inclusion probability is larger than 0.5}
+\item{ind.marg}{the selected variables whose marginal inclusion probability is larger than 0.5}
 \item{hppm.prob}{the posterior probability of the MAP model}
 \item{tuning}{the tuning parameter used in the model selection}
 %% ...
@@ -86,20 +87,19 @@ Shin Minsuk and Ruoxuan Tian
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-p0 = 100
-n0= 100
+p0 = 500
+n0 = 200
 
-X = matrix(rnorm(n0*p0),n0,p0)
-mu = 0.2*X[,1]^2 + sin(X[,2]*3) + cos(X[,3]*3) + 0.5*exp(X[,4])
+X = matrix(runif(n0*p0,-2,2),n0,p0)
+mu = X[,1]^2 + 2*sin(X[,2]*2) + 2*cos(X[,3]*2) + X[,4]
 y = mu + rnorm(n0)
 X = scale(X)
 y = as.vector(y)
 
-### default setting
-#fit_default = S5_additive(X,y)
-#print(res_default$ind.hppm) # the MAP model 
-#print(res_default$hppm.prob) # the posterior probability of the hppm 
-#plot(res_default$marg.prob,ylim=c(0,1),ylab="marginal inclusion probability") 
+#fit_additive = S5_additive(X,y, tuning = 0.1*ncol(X))
+#print(fit_additive$ind.hppm) # the MAP model 
+#print(fit_additive$hppm.prob) # the posterior probability of the hppm 
+#plot(fit_additive$marg.prob,ylim=c(0,1),ylab="marginal inclusion probability") 
 # the marginal inclusion probability 
 }
 

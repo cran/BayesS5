@@ -2,7 +2,7 @@ Package: BayesS5
 Type: Package
 Title: Bayesian Variable Selection Using Simplified Shotgun Stochastic
         Search with Screening (S5)
-Version: 1.40
+Version: 1.41
 Date: 2020-03-20
 Author: Minsuk Shin and Ruoxuan Tian
 Maintainer: Minsuk Shin <minsuk000@gmail.com>
@@ -15,5 +15,5 @@ URL: https://arxiv.org/abs/1507.07106v4
 License: GPL (>= 2)
 Repository: CRAN
 NeedsCompilation: no
-Packaged: 2020-03-23 06:28:17 UTC; mshin
-Date/Publication: 2020-03-23 11:10:19 UTC
+Packaged: 2020-03-23 16:44:09 UTC; mshin
+Date/Publication: 2020-03-24 07:40:14 UTC
